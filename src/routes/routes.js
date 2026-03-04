@@ -1,25 +1,9 @@
 import express from "express";
-import { DatabasePostg } from "../repositories/database-postg.js";
+import { UserController } from "../controllers/userController.js";
 
 const routes = express.Router();
-const database = new DatabasePostg();
+const userController = new UserController();
 
-/* routes.get("/home", (req, res) => {});
-
-routes.set("/login", (req, res) => {}); */
-
-routes.post("/register", async (req, res) => {
-  const { name, email, password } = req.body;
-
-  await database.create({
-    name,
-    email,
-    password,
-  });
-
-  return res.status(201).send("User created successfully!");
-});
-
-/* routes.put("/login", (req, res) => {}); */
+routes.post("/register", userController.register);
 
 export default routes;
